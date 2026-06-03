@@ -497,25 +497,6 @@ This comparison validates the input/output consistency of the complete SOS/ZPK +
 └── stuart_landau_closed_loop_SatForce_K0_KPPO.png
 ```
 
-Recommended repository structure:
-
-```text
-.
-├── README.md
-├── matlab/
-│   ├── K0_lqg_synth.m
-│   ├── K0_sos2zpk.m
-│   └── SOS_ZPK_PIPELINE_STUART_LANDAU.mlx
-├── python/
-│   └── PPO_HYBRID_SOS_ZPK_STUART_LANDAU.py
-├── data/
-│   └── README.md
-├── results/
-│   └── README.md
-└── docs/
-    └── README.md
-```
-
 ---
 
 ## 13. Complete Workflow Summary
