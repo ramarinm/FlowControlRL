@@ -195,7 +195,7 @@ Instead, PPO proposes a perturbation over the controller parameters:
 
 
 $$
-theta_{trial} = theta_{base} + \delta_{theta}
+\theta_{trial} = \theta_{base} + \delta_{theta}
 $$
 
 Then a dynamic SOS/ZPK controller is reconstructed:
