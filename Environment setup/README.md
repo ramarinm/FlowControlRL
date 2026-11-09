@@ -36,9 +36,28 @@ Necesitas Miniconda, VS Code y las extensiones **Python** y **Jupyter**, publica
 
 Puedes obtener este repositorio sin instalar Git: en GitHub, pulsa **Code → Download ZIP** y descomprime el archivo. Si ya tienes una copia local del repositorio, utiliza esa carpeta.
 
-Los comandos de esta guía son para **PowerShell**, ejecutados desde la raíz del repositorio: la carpeta que contiene CartPole, Stuart_Landau y Environment setup. Las rutas llevan comillas porque Environment setup contiene un espacio.
+Los comandos de Conda, Python y Git que aparecen aquí funcionan tanto en **CMD** como en **PowerShell**. Ejecútalos desde la raíz del repositorio: la carpeta que contiene CartPole, Stuart_Landau y Environment setup. Las rutas llevan comillas porque Environment setup contiene un espacio.
 
-Si Conda no se reconoce en la terminal de VS Code, usa **Anaconda PowerShell Prompt / Miniconda PowerShell Prompt** desde Inicio de Windows y sitúate en la carpeta del repositorio. Comprueba:
+**Identifica tu terminal antes de cambiar de carpeta:**
+
+- **CMD / Anaconda Prompt:** el prompt tiene una forma como (base) C:\...>.
+- **PowerShell:** el prompt incluye PS, por ejemplo (base) PS C:\...>.
+
+En **CMD**, usa este comando y sustituye la ruta por la ubicación de tu repositorio:
+
+~~~cmd
+cd /d "C:\ruta\FlowControlRL"
+~~~
+
+En **PowerShell**, el equivalente es:
+
+~~~powershell
+Set-Location "C:\ruta\FlowControlRL"
+~~~
+
+Set-Location, Remove-Item y los bloques de PowerShell no funcionan en CMD. El mensaje «Set-Location no se reconoce» indica que debes usar el comando cd /d de CMD.
+
+Si Conda no se reconoce en la terminal de VS Code, abre **Anaconda Prompt** (CMD) o **Anaconda PowerShell Prompt** desde Inicio de Windows y sitúate en la carpeta del repositorio con el comando correspondiente. Comprueba:
 
 ~~~powershell
 conda --version
@@ -130,10 +149,18 @@ conda deactivate
 
 ## 6. Guardar la configuración realmente instalada
 
-Después de superar las pruebas, exporta las versiones resueltas. Este comando elimina la ruta local del archivo exportado:
+Después de superar las pruebas, exporta las versiones resueltas. Elige el comando de tu terminal; ambos eliminan la ruta local del archivo exportado.
+
+**PowerShell:**
 
 ~~~powershell
 conda env export --no-builds | Where-Object { $_ -notmatch '^prefix:' } | Set-Content -Encoding utf8 "Environment setup\environment_resuelto.yml"
+~~~
+
+**CMD / Anaconda Prompt:**
+
+~~~cmd
+conda env export --no-builds | findstr /V /B "prefix:" > "Environment setup\environment_resuelto.yml"
 ~~~
 
 Guarda ese archivo en GitHub si quieres registrar las versiones de todas las dependencias. Para recrear esa configuración en otro equipo Windows compatible, usa ese archivo en lugar de environment.yml:
