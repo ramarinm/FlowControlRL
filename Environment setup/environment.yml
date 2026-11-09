@@ -1,0 +1,29 @@
+name: ENV_RL
+
+channels:
+  - conda-forge
+  - nodefaults
+
+dependencies:
+  - python=3.10
+  - pip
+
+  # Versiones solicitadas
+  - numpy=1.26.4
+  - scipy=1.14.1
+  - pandas=2.2.3
+  - meshio=5.3.5
+  - control=0.10.1
+
+  # Graficas y notebooks en VS Code
+  - matplotlib
+  - ipykernel
+
+  # RL en CPU: dependencias instaladas con Conda
+  - pytorch-cpu=2.9.1
+  - gymnasium=1.0.0
+  - cloudpickle
+
+  # PyPI conserva soporte para Python 3.10 en esta version.
+  - pip:
+      - stable-baselines3==2.9.2
