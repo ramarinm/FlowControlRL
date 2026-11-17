@@ -4,6 +4,107 @@ Modificación de la implementación adjunta, con `controller_lti`, `model_free` 
 `residual_rl`. No se ha sustituido PPO ni el algoritmo de guía. El código sigue
 siendo SISO; cambiar el número de estados de la planta no cambia el ambiente.
 
+## Mathematical Formulation and Research Objectives
+
+The following describes the research workflow. Initial controller synthesis and
+ZOH discretization are performed externally; the Python pipeline consumes a
+compatible discrete controller. Parameter continuation is performed manually by
+loading the controller obtained at the preceding parameter value.
+
+A nonlinear plant is considered, with measurements depending only on its state:
+
+$$
+\dot{x}(t)=f(x(t),u(t),\mu), \qquad y(t)=g(x(t))
+$$
+
+$$
+x\in\mathbb{R}^{n_x}, \qquad
+u\in\mathbb{R}^{n_u}, \qquad
+y\in\mathbb{R}^{n_y}
+$$
+
+The continuous LTI controller receives the measured output directly:
+
+$$
+\dot{x}_c=A_cx_c+B_cy, \qquad
+u=C_cx_c+D_cy
+$$
+
+The continuous closed loop can be expressed using an augmented state:
+
+$$
+\frac{d}{dt}
+\begin{bmatrix}x\\x_c\end{bmatrix}
+=
+\begin{bmatrix}
+f(x,C_cx_c+D_cg(x),\mu)\\
+A_cx_c+B_cg(x)
+\end{bmatrix}
+$$
+
+### Sampled-Data Implementation
+
+This work adopts a **continuous plant coupled to a discrete LTI controller through
+a zero-order hold (ZOH)**, consistent with the sampled interaction commonly used
+in reinforcement learning:
+
+$$
+\begin{aligned}
+t_k&=kT_s, \qquad y_k=g(x(t_k)),\\
+u_k&=C_dx_c[k]+D_dy_k,\\
+x_c[k+1]&=A_dx_c[k]+B_dy_k,\\
+u(t)&=u_k,\qquad t\in[t_k,t_{k+1}),\\
+\dot{x}(t)&=f(x(t),u_k,\mu).
+\end{aligned}
+$$
+
+The numerical solver integrates the plant between controller updates. Rollouts
+are used for PPO training, and the resulting LTI controller is validated with
+fixed coefficients.
+
+### Methodology
+
+1. Synthesize an initial controller from the linearized model in the design region:
+
+   $$
+   \mu\leq\mu_c
+   $$
+
+2. Discretize the controller using ZOH.
+3. Obtain an equivalent second-order sections (SOS) realization, organized by
+   channel for MIMO controllers. The current implementation is SISO.
+4. Couple the discrete controller to the nonlinear plant and validate the
+   closed-loop response.
+
+### Code Objectives
+
+- Synthesize the initial LTI controller and obtain its discrete SOS realization:
+
+  $$
+  K_0(\mu_i)\longrightarrow K_{0,d}(\mu_i)
+  \longrightarrow \mathrm{SOS}_0(\mu_i)
+  $$
+
+- Iteratively construct the controller for the next parameter value through
+  RL–PPO optimization in Python, initialized from the previous controller:
+
+  $$
+  K^\star(\mu_i)
+  \xrightarrow[\mu=\mu_{i+1}]{\mathrm{RL-PPO}}
+  K^\star(\mu_{i+1})
+  $$
+
+### Parameter Continuation and Validation
+
+The continuation sequence is defined as:
+
+$$
+\mu_0=\mu_{\mathrm{base}}, \qquad
+\mu_{i+1}=\mu_i+\Delta\mu, \qquad
+\mu_N=\mu_{\mathrm{target}},
+\qquad i=0,\ldots,N-1.
+$$
+
 ## Auditoría y decisiones
 
 | Responsabilidad | Código original y ubicación actual |
