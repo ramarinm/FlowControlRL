@@ -105,6 +105,10 @@ $$
 \qquad i=0,\ldots,N-1.
 $$
 
+## Formulación del controlador
+
+La discretización ZOH, los coeficientes ZPK, los estados en forma directa II y las matrices de la cascada se describen en [Continuous Controller to Discrete SOS–ZPK Realization](README_SOS_ZPK.md).
+
 ## Auditoría y decisiones
 
 | Responsabilidad | Código original y ubicación actual |
