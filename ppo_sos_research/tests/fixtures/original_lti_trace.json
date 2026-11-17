@@ -1,0 +1,38 @@
+{
+  "source": "Unmodified ppo_sos_pipeline.zip uploaded by user",
+  "cfg": {
+    "dt": 0.05,
+    "Ts": 0.05,
+    "max_steps": 7,
+    "hybrid_timesteps": 70000,
+    "ppo_n_steps": 1024,
+    "batch_size": 64,
+    "dk_hold_steps": 3,
+    "lr_good": 0.3,
+    "lr_bad": 0.01,
+    "alpha_update": 0.3,
+    "allow_worse_base_update": false,
+    "beta_softmax": 5.0,
+    "k_eval_steps": 11,
+    "q_y": 6.0,
+    "r_u": 0.005,
+    "fail_penalty": 100.0,
+    "force_limit": 0.2,
+    "verbose_episode": false
+  },
+  "original_source_sha256": {
+    "io_utils.py": "4e9945b94f145b0ab7ade6e6032ee5e7e996e94d4f7b18e1327f13de3325fbca",
+    "controller_sos.py": "4d593ee365e8d122b7643b8003bbb4e723e90795ef9ec47825b700d9a5c48939",
+    "zpk.py": "533321fe5c25b77fe11eb69fbb6bda16a8b69d652c6bc055b35ab8b618bfa80e",
+    "__init__.py": "a48a20872f6210a9105a7e729f83d4237ba148b1205d4e2e159a372b723049c1",
+    "plants.py": "8cbb14af5a1645edacdc63fea51486f6c5c1fb77831f2f7cb4e22f3e347a094d",
+    "builders.py": "0a30c71941df6b8033a3b10660dc2a70817c0dd5dd73d9fc380abb378c89efb6",
+    "env.py": "7dc17456da5c21d0fd1b8e659e365df8d78a40953f591436adcb00425d139f86",
+    "main.py": "72aef31dec382e4797a1e8e96ad4958859ae929cec03f5cb2fd6ff203c5406d9",
+    "training.py": "5ee3bb69ea6224f384032bf9ed7fcca125279d6dff5781680c119b444839961d",
+    "config.py": "dd645ca1beb1200df70f45cf91d18a0b1885cac8f577650a81a0a17d0be69c0c",
+    "utils.py": "3fa51203108b137d496fb31fadd6bf41519ed6bdeeeba6a855abd27f303722dc",
+    "simulation.py": "accc3ca18cfff2bdda3836cb107d43c2b47ef44b427c8f1f0b6a1d25b961aef4"
+  },
+  "generation": "21 deterministic supplied actions, three episodes of seven steps, hold=3, offline N=11; original nonlinear Stuart-Landau default mu=2.4"
+}
