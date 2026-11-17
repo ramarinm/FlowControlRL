@@ -1,11 +1,8 @@
-# Estado de la entrega
+# Entrega completa
 
-Código y documentación del proyecto modificado. Los resultados de pruebas documentados corresponden al proyecto completo verificado en el entorno de trabajo.
+Se han incorporado todos los archivos de la entrega autorizada: código, documentación, controlador MATLAB, datos de regresión y ZIP de resultados.
 
-Pendientes de autorización explícita para publicación en este repositorio público:
-- `ppo_sos_pipeline/Kinit_mu1.0.mat`: controlador MATLAB suministrado.
-- `tests/fixtures/original_lti_trace.npz`: datos de regresión generados.
-- `deliverables/ppo_sos_pipeline_revised.zip`: proyecto completo, incluido el controlador.
-- `deliverables/ppo_sos_validation_runs.zip`: políticas, controladores y resultados de validación.
+- [Descargar proyecto completo](https://github.com/ramarinm/FlowControlRL/raw/refs/heads/codex/ppo-research-pipeline/deliverables/ppo_sos_pipeline_revised.zip)
+- [Descargar resultados y figuras](https://github.com/ramarinm/FlowControlRL/raw/refs/heads/codex/ppo-research-pipeline/deliverables/ppo_sos_validation_runs.zip)
 
-Esta copia parcial todavía no incluye todos los archivos necesarios para ejecutar los ejemplos LTI y la suite completa. La revisión automática de publicación bloqueó el controlador MATLAB por posible información privada. No se han alterado los resultados originales de las pruebas.
+Los archivos subidos coinciden por hash Git con los verificados en el entorno de trabajo. Las comprobaciones ejecutadas y limitaciones están en VERIFICATION.md. Las pruebas no se han vuelto a ejecutar en GitHub.
