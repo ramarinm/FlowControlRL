@@ -1,0 +1,7 @@
+numpy==2.3.5
+scipy==1.17.0
+matplotlib==3.10.8
+torch==2.15.0
+stable-baselines3==2.9.2
+gymnasium==1.4.0
+pytest==9.2.0
